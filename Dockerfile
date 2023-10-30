@@ -1,18 +1,25 @@
-# Using this instead of chainguard due to whisper having a dependency on an incompatible Python version
-FROM python:3.11.6-bookworm
+FROM ghcr.io/defenseunicorns/leapfrogai/python:3.11-dev-amd64 as builder
 
-RUN apt-get -y update
-RUN apt-get install -y ffmpeg
+WORKDIR /leapfrogai
 
-# Install project
-COPY --chown=user:user requirements.txt .
-RUN pip3 install -r requirements.txt
+COPY requirements.txt .
 
-COPY --chown=user:user main.py .
-COPY --chown=user:user .python-version .
+RUN pip install -r requirements.txt --user
+RUN pip install wget --user
 
-COPY --chown=user:user pyproject.toml .
-COPY --chown=user:user README.md .
+USER root
+RUN mkdir -p .model
+COPY .model/ .model/
 
-# Enjoy
-ENTRYPOINT ["python3", "-u", "main.py"]
+FROM ghcr.io/defenseunicorns/leapfrogai/python:3.11-amd64
+
+WORKDIR /leapfrogai
+
+COPY --from=builder /home/nonroot/.local/lib/python3.11/site-packages /home/nonroot/.local/lib/python3.11/site-packages
+COPY --from=builder /leapfrogai/.model/ /leapfrogai/.model/
+
+COPY main.py .
+
+EXPOSE 50051:50051
+
+ENTRYPOINT ["python3", "main.py"]

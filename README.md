@@ -2,7 +2,6 @@
 
 ## Pre-requisites
 
-* [Rye](https://github.com/mitsuhiko/rye)
 * System install of ffmpeg
 * For GPU usage, latest CUDA drivers
 
