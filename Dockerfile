@@ -5,7 +5,6 @@ WORKDIR /leapfrogai
 COPY requirements.txt .
 
 RUN pip install -r requirements.txt --user
-RUN pip install wget --user
 
 USER root
 RUN mkdir -p .model
