@@ -1,26 +1,33 @@
 # Whsiper API server
 
-## Pre-requisites
+## Description
+A LeapfrogAI API-compatible Whisper backend for speech transcription.
 
-* [Rye](https://github.com/mitsuhiko/rye)
-* System install of ffmpeg
+## Instructions
+
 * For GPU usage, latest CUDA drivers
 
-## Getting Started
+### Install Locally
 
 ```shell
-rye sync
-rye run python main.py
+# Install FFMPEG locally
+sudo apt install ffmpeg
+
+# Setup Virtual Environment
+python -m venv .venv
+source .venv/bin/activate
+make build-requirements
+
+# Clone model locally
+make fetch-model
+
+# Run backend
+python main.py
 ```
 
-## Docker Build
+### Docker Build
 
 ```shell
 docker build -t leapfrogai-whisper .
-docker run --gpus all --ipc=host --ulimit memlock=-1 --ulimit stack=67108864 -p 0.0.0.0:8000:8000 -p 0.0.0.0:50051:50051 -d <image-id>
+docker run --gpus all --ipc=host --ulimit memlock=-1 --ulimit stack=67108864 -p 0.0.0.0:50051:50051 -d <image-id>
 ```
-
-## TODO
-
-* Tests
-* Error handling for ffmpeg

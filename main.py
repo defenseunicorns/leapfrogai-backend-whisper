@@ -8,7 +8,7 @@ import whisper
 import leapfrogai
 
 def make_transcribe_request(filename, task, language, temperature, prompt):
-    model = whisper.load_model("large")
+    model = whisper.load_model(name="base", download_root=".model")
     return model.transcribe(
         filename, task=task, language=language, temperature=temperature, prompt=prompt
     )
@@ -64,6 +64,7 @@ class Whisper(leapfrogai.AudioServicer):
         return leapfrogai.NameResponse(name="whisper")
 
 async def main():
+    whisper.load_model(name="base", download_root=".model")
     logging.basicConfig(level=logging.INFO)
     await leapfrogai.serve(Whisper())
 
