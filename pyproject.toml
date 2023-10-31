@@ -5,6 +5,7 @@ description = "Whisper backend for LeapfrogAI"
 dependencies = [
     "leapfrogai~=0.3.3",
     "openai-whisper>=20230918",
+    "ffmpeg>=1.4",
 ]
 readme = "README.md"
 requires-python = ">=3.11.4"
@@ -14,3 +15,6 @@ dev = ["pip-tools", "pytest", "black", "isort"]
 
 [tool.pip-tools]
 generate-hashes = false
+
+[tool.setuptools.packages.find]
+exclude = ["chart"]

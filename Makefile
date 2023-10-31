@@ -19,8 +19,8 @@ build-requirements-dev:
 	pip-compile --extra dev -o requirements-dev.txt pyproject.toml
 
 fetch-model:
-	mkdir .model
-	python get_model.py
+	mkdir -p .model
+	python src/get_model.py
 
 test:
 	pytest **/*.py

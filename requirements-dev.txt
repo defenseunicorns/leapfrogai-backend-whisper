@@ -18,6 +18,8 @@ click==8.1.7
     #   pip-tools
 cmake==3.27.7
     # via triton
+ffmpeg==1.4
+    # via leapfrogai-backend-whisper (pyproject.toml)
 filelock==3.13.1
     # via
     #   torch
