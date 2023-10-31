@@ -1,34 +1,62 @@
-# Whsiper API server
+# LeapfrogAI Whisper Backend
 
 ## Description
-A LeapfrogAI API-compatible Whisper backend for speech transcription.
+
+A LeapfrogAI API-compatible Whisper wrapper for audio transcription generation.
 
 ## Instructions
 
-* For GPU usage, latest CUDA drivers
+### Run Locally
 
-### Install Locally
+For cloning a model locally and running the development backend.
 
-```shell
+#### Run Python Backend Locally
+
+```bash
 # Install FFMPEG locally
 sudo apt install ffmpeg
+
+# Clone Model
+make fetch-model
 
 # Setup Virtual Environment
 python3 -m venv .venv
 source .venv/bin/activate
 make build-requirements
 
-# Clone model locally
-make fetch-model
-
-# Run backend
-python3 main.py
+# Start Model Backend
+python main.py
 ```
 
-### Docker Build
+### Docker Run
 
-```shell
-make fetch-model
+#### Local Image Build and Run
+
+For local image building and running.
+
+```bash
 docker build -t leapfrogai/whisper:latest .
-docker run --rm --ipc=host --ulimit memlock=-1 --ulimit stack=67108864 -p 50052:50051 -d --name whisper leapfrogai/whisper:latest
+# add the "--gpus all" flag for CUDA inferencing
+docker run --rm --ipc=host --ulimit memlock=-1 --ulimit stack=67108864 -p 50051:50051 -d --name whisper leapfrogai/whisper:latest
+```
+
+#### Remote Image Build and Run
+
+For pulling a tagged image from the main release repository.
+
+Where `<IMAGE_TAG>` is the released packages found [here](https://github.com/orgs/defenseunicorns/packages/container/package/leapfrogai%2Fwhisper).
+
+```bash
+docker build -t ghcr.io/defenseunicorns/leapfrogai/whisper:<IMAGE_TAG> .
+# add the "--gpus all" flag for CUDA inferencing
+docker run --rm --ipc=host --ulimit memlock=-1 --ulimit stack=67108864 -p 50051:50051 -d --name whisper leapfrogai/whisper:<IMAGE_TAG>
+```
+
+### Docker Build and Push
+
+This is for pushing a new image tag to the repository. Beforehand, ensure you run a `git tag <IMAGE_TAG>`.
+
+```bash
+make docker-build
+make docker-push
 ```

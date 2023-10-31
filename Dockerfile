@@ -7,8 +7,11 @@ COPY requirements.txt .
 RUN pip install -r requirements.txt --user
 
 USER root
+RUN pip install whisper
 RUN mkdir -p .model
-COPY .model/ .model/
+
+COPY src/get_model.py .
+RUN python3 get_model.py
 
 # Use ffmpeg image to get compiled binaries
 FROM cgr.dev/chainguard/ffmpeg:latest as ffmpeg
