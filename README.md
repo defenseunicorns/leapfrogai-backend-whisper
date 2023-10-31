@@ -10,6 +10,9 @@ A LeapfrogAI API-compatible Whisper backend for speech transcription.
 ### Install Locally
 
 ```shell
+# Install FFMPEG locally
+sudo apt install ffmpeg
+
 # Setup Virtual Environment
 python -m venv .venv
 source .venv/bin/activate
@@ -26,5 +29,5 @@ python main.py
 
 ```shell
 docker build -t leapfrogai-whisper .
-docker run --gpus all --ipc=host --ulimit memlock=-1 --ulimit stack=67108864 -p 0.0.0.0:8000:8000 -p 0.0.0.0:50051:50051 -d <image-id>
+docker run --gpus all --ipc=host --ulimit memlock=-1 --ulimit stack=67108864 -p 0.0.0.0:50051:50051 -d <image-id>
 ```
