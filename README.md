@@ -30,5 +30,5 @@ python3 main.py
 ```shell
 make fetch-model
 docker build -t leapfrogai/whisper:latest .
-docker run --rm --ipc=host --ulimit memlock=-1 --ulimit stack=67108864 -p 8000:8000 -p 50052:50051 -d --name whisper leapfrogai/whisper:latest
+docker run --rm --ipc=host --ulimit memlock=-1 --ulimit stack=67108864 -p 50052:50051 -d --name whisper leapfrogai/whisper:latest
 ```
