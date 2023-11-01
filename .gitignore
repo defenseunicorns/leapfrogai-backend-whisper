@@ -1,6 +1,10 @@
-# Cached Models
-.model/
-.models/
+# Zarf packages
+*.tar*
+zarf-sbom/
+
+# Models Directory
+.models/*
+.model/*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
