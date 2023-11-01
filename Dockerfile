@@ -6,8 +6,6 @@ COPY requirements.txt .
 
 RUN pip install -r requirements.txt --user
 
-USER root
-RUN pip install whisper
 RUN mkdir -p .model
 
 COPY src/get_model.py .
@@ -28,6 +26,6 @@ COPY --from=builder /leapfrogai/.model/ /leapfrogai/.model/
 
 COPY main.py .
 
-EXPOSE 50051:50051
+EXPOSE 50051
 
 ENTRYPOINT ["python3", "-u", "main.py"]

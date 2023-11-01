@@ -35,9 +35,9 @@ python main.py
 For local image building and running.
 
 ```bash
-docker build -t leapfrogai/whisper:latest .
+docker build -t ghcr.io/defenseunicorns/leapfrogai/whisper:latest .
 # add the "--gpus all" flag for CUDA inferencing
-docker run --rm --ipc=host --ulimit memlock=-1 --ulimit stack=67108864 -p 50051:50051 -d --name whisper leapfrogai/whisper:latest
+docker run --rm --ipc=host --ulimit memlock=-1 --ulimit stack=67108864 -p 50051:50051 -d --name whisper ghcr.io/defenseunicorns/leapfrogai/whisper:latest
 ```
 
 #### Remote Image Build and Run
@@ -49,7 +49,7 @@ Where `<IMAGE_TAG>` is the released packages found [here](https://github.com/org
 ```bash
 docker build -t ghcr.io/defenseunicorns/leapfrogai/whisper:<IMAGE_TAG> .
 # add the "--gpus all" flag for CUDA inferencing
-docker run --rm --ipc=host --ulimit memlock=-1 --ulimit stack=67108864 -p 50051:50051 -d --name whisper leapfrogai/whisper:<IMAGE_TAG>
+docker run --rm --ipc=host --ulimit memlock=-1 --ulimit stack=67108864 -p 50051:50051 -d --name whisper ghcr.io/defenseunicorns/leapfrogai/whisper:<IMAGE_TAG>
 ```
 
 ### Docker Build and Push
