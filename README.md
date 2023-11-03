@@ -1,4 +1,4 @@
-# Whsiper API server
+# LeapfrogAI Whisper Backend
 
 ## Description
 A LeapfrogAI API-compatible Whisper backend for speech transcription.
