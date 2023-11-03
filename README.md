@@ -28,7 +28,11 @@ python3 main.py
 ### Docker Build
 
 ```shell
-make fetch-model
-docker build -t leapfrogai/whisper:latest .
-docker run --rm --ipc=host --ulimit memlock=-1 --ulimit stack=67108864 -p 50052:50051 -d --name whisper leapfrogai/whisper:latest
+docker build -t leapfrogai-whisper .
+
+# GPU Run
+docker run --gpus all --ipc=host --ulimit memlock=-1 --ulimit stack=67108864 -p 0.0.0.0:50051:50051 -d <image-id>
+
+# CPU Run
+docker run --ipc=host --ulimit memlock=-1 --ulimit stack=67108864 -p 0.0.0.0:50051:50051 -d <image-id>
 ```
