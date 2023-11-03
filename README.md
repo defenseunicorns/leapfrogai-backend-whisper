@@ -14,7 +14,7 @@ A LeapfrogAI API-compatible Whisper backend for speech transcription.
 sudo apt install ffmpeg
 
 # Setup Virtual Environment
-python -m venv .venv
+python3 -m venv .venv
 source .venv/bin/activate
 make build-requirements
 
@@ -22,7 +22,7 @@ make build-requirements
 make fetch-model
 
 # Run backend
-python main.py
+python3 main.py
 ```
 
 ### Docker Build
