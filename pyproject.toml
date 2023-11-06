@@ -14,7 +14,7 @@ requires-python = ">=3.11.4"
 dev = ["pip-tools", "pytest", "black", "isort"]
 
 [tool.pip-tools]
-generate-hashes = false
+generate-hashes = true
 
 [tool.setuptools.packages.find]
 exclude = ["chart"]

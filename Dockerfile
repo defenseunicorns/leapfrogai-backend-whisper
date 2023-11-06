@@ -25,6 +25,6 @@ COPY --from=builder /leapfrogai/.model/ /leapfrogai/.model/
 
 COPY main.py .
 
-EXPOSE 50051:50051
+EXPOSE 50051
 
 ENTRYPOINT ["python3", "-u", "main.py"]

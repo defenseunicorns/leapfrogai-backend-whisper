@@ -19,7 +19,7 @@ build-requirements-dev:
 	pip-compile --extra dev -o requirements-dev.txt pyproject.toml
 
 fetch-model:
-	pip install whisper
+	pip install openai-whisper
 	mkdir -p .model
 	python3 src/get_model.py
 
