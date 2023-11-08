@@ -6,7 +6,7 @@ metadata:
     whisper model
 
 constants:
-  - name: VERSION
+  - name: IMAGE_VERSION
     default: ###ZARF_PKG_TMPL_VERSION###
   - name: NAME
     default: ###ZARF_PKG_TMPL_NAME###
