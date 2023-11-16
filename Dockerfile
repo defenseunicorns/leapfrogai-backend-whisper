@@ -6,7 +6,7 @@ COPY requirements.txt .
 
 RUN pip install -r requirements.txt --user
 
-COPY whisper-base-ct2 whisper-base-ct2
+COPY whisper-tiny-ct2 whisper-tiny-ct2
 
 # Use ffmpeg image to get compiled binaries
 FROM cgr.dev/chainguard/ffmpeg:latest as ffmpeg

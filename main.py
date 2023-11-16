@@ -3,13 +3,11 @@ import tempfile
 from typing import Iterator
 import asyncio
 
-import whisper
-
 import leapfrogai
 
 from faster_whisper import WhisperModel
 
-model_size = "whisper-base-ct2"
+model_size = "whisper-tiny-ct2"
 
 
 def make_transcribe_request(filename, task, language, temperature, prompt):
@@ -21,6 +19,9 @@ def make_transcribe_request(filename, task, language, temperature, prompt):
 
     for segment in segments:
         output += segment.text
+
+    print("Completed " + filename)
+    print(output)
 
     return {"text": output}
 
