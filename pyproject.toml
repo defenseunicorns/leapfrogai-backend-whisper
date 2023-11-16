@@ -6,6 +6,8 @@ dependencies = [
     "leapfrogai~=0.3.3",
     "openai-whisper>=20230918",
     "ffmpeg>=1.4",
+    "ctranslate2",
+    "faster-whisper"
 ]
 readme = "README.md"
 requires-python = ">=3.11.4"
