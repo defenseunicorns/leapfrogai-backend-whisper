@@ -21,6 +21,8 @@ COPY --from=ffmpeg /usr/lib/lib* /usr/lib
 COPY --from=builder /home/nonroot/.local/lib/python3.11/site-packages /home/nonroot/.local/lib/python3.11/site-packages
 COPY --from=builder /leapfrogai/whisper-base-ct2/ /leapfrogai/whisper-base-ct2/
 
+ENV OMP_NUM_THREADS=100
+
 COPY main.py .
 
 EXPOSE 50051
