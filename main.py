@@ -21,7 +21,6 @@ def make_transcribe_request(filename, task, language, temperature, prompt):
         output += segment.text
 
     print("Completed " + filename)
-    print(output)
 
     return {"text": output}
 
