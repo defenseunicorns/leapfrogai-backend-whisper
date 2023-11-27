@@ -1,7 +1,6 @@
 # Zarf packages
 zarf*.tar.zst
 zarf-sbom/
-whisper-*-ct2/
 
 # Models Directory
 .models/*

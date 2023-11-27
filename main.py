@@ -7,11 +7,11 @@ import leapfrogai
 
 from faster_whisper import WhisperModel
 
-model_size = "whisper-base-ct2"
+model_path = ".model"
 
 
 def make_transcribe_request(filename, task, language, temperature, prompt):
-    model = WhisperModel(model_size, device="cpu", compute_type="float32")
+    model = WhisperModel(model_path, device="cpu", compute_type="float32")
 
     segments, info = model.transcribe(filename, beam_size=5)
 
@@ -78,7 +78,7 @@ class Whisper(leapfrogai.AudioServicer):
 
 
 async def main():
-    WhisperModel(model_size, device="cpu", compute_type="float32")
+    WhisperModel(model_path, device="cpu", compute_type="float32")
     logging.basicConfig(level=logging.INFO)
     await leapfrogai.serve(Whisper())
 
