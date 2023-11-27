@@ -6,7 +6,7 @@ COPY requirements.txt .
 
 RUN pip install -r requirements.txt --user
 
-COPY whisper-tiny-ct2 whisper-tiny-ct2
+COPY whisper-base-ct2 whisper-base-ct2
 
 # Use ffmpeg image to get compiled binaries
 FROM cgr.dev/chainguard/ffmpeg:latest as ffmpeg
@@ -20,8 +20,6 @@ COPY --from=ffmpeg /usr/bin/ffprobe /usr/bin
 COPY --from=ffmpeg /usr/lib/lib* /usr/lib
 COPY --from=builder /home/nonroot/.local/lib/python3.11/site-packages /home/nonroot/.local/lib/python3.11/site-packages
 COPY --from=builder /leapfrogai/whisper-base-ct2/ /leapfrogai/whisper-base-ct2/
-
-ENV OMP_NUM_THREADS=100
 
 COPY main.py .
 

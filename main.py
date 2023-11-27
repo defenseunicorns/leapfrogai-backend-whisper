@@ -7,7 +7,7 @@ import leapfrogai
 
 from faster_whisper import WhisperModel
 
-model_size = "whisper-tiny-ct2"
+model_size = "whisper-base-ct2"
 
 
 def make_transcribe_request(filename, task, language, temperature, prompt):
@@ -21,6 +21,7 @@ def make_transcribe_request(filename, task, language, temperature, prompt):
         output += segment.text
 
     print("Completed " + filename)
+    print(output)
 
     return {"text": output}
 
@@ -53,6 +54,7 @@ def call_whisper(
             f.name, task, inputLanguage, temperature, prompt
         )
         text = str(result["text"])
+        print("INFO: Transcription complete!")
         return leapfrogai.AudioResponse(text=text)
 
 

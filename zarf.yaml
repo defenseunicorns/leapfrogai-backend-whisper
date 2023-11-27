@@ -1,15 +1,15 @@
 kind: ZarfPackageConfig
 metadata:
-  name: whisper
-  version: 0.3.0
+  name: "###ZARF_PKG_TMPL_NAME###"
+  version: "###ZARF_PKG_TMPL_IMAGE_VERSION###"
   description: >
     whisper model
 
 constants:
   - name: IMAGE_VERSION
-    default: ###ZARF_PKG_TMPL_VERSION###
+    value: "###ZARF_PKG_TMPL_IMAGE_VERSION###"
   - name: NAME
-    default: ###ZARF_PKG_TMPL_NAME###
+    value: "###ZARF_PKG_TMPL_NAME###"
 
 components:
   - name: import-model
