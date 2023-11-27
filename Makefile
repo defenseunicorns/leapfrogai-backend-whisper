@@ -19,7 +19,7 @@ build-requirements-dev:
 	pip-compile --extra dev -o requirements-dev.txt pyproject.toml
 
 fetch-model:
-	ct2-transformers-converter --model openai/whisper-tiny.en --output_dir whisper-tiny-ct2 --copy_files tokenizer.json --quantization float16
+	ct2-transformers-converter --model openai/whisper-base --output_dir whisper-base-ct2 --copy_files tokenizer.json --quantization float16
 
 test:
 	pytest **/*.py
