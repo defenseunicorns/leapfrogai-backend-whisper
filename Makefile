@@ -19,9 +19,7 @@ build-requirements-dev:
 	pip-compile --extra dev -o requirements-dev.txt pyproject.toml
 
 fetch-model:
-	pip install openai-whisper
-	mkdir -p .model
-	python3 src/get_model.py
+	ct2-transformers-converter --model openai/whisper-base --output_dir .model --copy_files tokenizer.json --quantization float32
 
 test:
 	pytest **/*.py

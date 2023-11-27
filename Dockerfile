@@ -6,9 +6,7 @@ COPY requirements.txt .
 
 RUN pip install -r requirements.txt --user
 
-COPY src/get_model.py .
-RUN mkdir -p .model
-RUN python3 get_model.py
+COPY .model .model
 
 # Use ffmpeg image to get compiled binaries
 FROM cgr.dev/chainguard/ffmpeg:latest as ffmpeg
