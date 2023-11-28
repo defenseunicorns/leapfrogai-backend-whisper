@@ -4,9 +4,9 @@ WORKDIR /leapfrogai
 
 COPY requirements.txt .
 
-RUN pip3 install -r requirements.txt
+RUN pip install -r requirements.txt
 
-RUN ct2-transformers-converter --model openai/whisper-base --output_dir .model --copy_files tokenizer.json --quantization float32
+RUN /home/nonroot/.local/bin/ct2-transformers-converter --model openai/whisper-base --output_dir .model --copy_files tokenizer.json --quantization float32
 
 # Use ffmpeg image to get compiled binaries
 FROM cgr.dev/chainguard/ffmpeg:latest as ffmpeg
@@ -25,4 +25,4 @@ COPY main.py .
 
 EXPOSE 50051
 
-ENTRYPOINT ["python3", "-u", "main.py"]
+ENTRYPOINT ["python", "-u", "main.py"]
