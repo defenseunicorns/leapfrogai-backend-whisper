@@ -16,13 +16,13 @@ For cloning a model locally and running the development backend.
 # Install FFMPEG locally
 sudo apt install ffmpeg
 
-# Clone Model
-make fetch-model
-
 # Setup Virtual Environment
 python3 -m venv .venv
 source .venv/bin/activate
-make build-requirements
+pip install -r requirements.txt
+
+# Clone Model
+make fetch-model
 
 # Start Model Backend
 python main.py
