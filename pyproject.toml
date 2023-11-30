@@ -3,7 +3,7 @@ name = "leapfrogai-backend-whisper"
 version = "0.1.0"
 description = "Whisper backend for LeapfrogAI"
 dependencies = [
-    "leapfrogai~=0.3.3",
+    "leapfrogai>=0.4.0",
     "openai-whisper>=20230918",
     "ffmpeg>=1.4",
     "ctranslate2",
