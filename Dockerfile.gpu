@@ -2,9 +2,9 @@ FROM ghcr.io/defenseunicorns/leapfrogai/python:3.11-dev-amd64 as builder
 
 WORKDIR /leapfrogai
 
-COPY requirements.txt .
+COPY requirements-gpu.txt .
 
-RUN pip install -r requirements.txt
+RUN pip install -r requirements-gpu.txt
 
 RUN /home/nonroot/.local/bin/ct2-transformers-converter --model openai/whisper-base --output_dir .model --copy_files tokenizer.json --quantization float32
 
@@ -22,6 +22,10 @@ COPY --from=builder /home/nonroot/.local/lib/python3.11/site-packages /home/nonr
 COPY --from=builder /leapfrogai/.model/ /leapfrogai/.model/
 
 COPY main.py .
+COPY scripts/load_cuda.py .
+
+RUN export LD_LIBRARY_PATH="python load_cuda.py"
+ENV GPU_ENABLED=true
 
 EXPOSE 50051:50051
 
