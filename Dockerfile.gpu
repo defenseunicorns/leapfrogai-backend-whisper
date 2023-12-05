@@ -24,7 +24,7 @@ COPY --from=builder /leapfrogai/.model/ /leapfrogai/.model/
 COPY main.py .
 COPY scripts/load_cuda.py .
 
-RUN export LD_LIBRARY_PATH="python load_cuda.py"
+ENV LD_LIBRARY_PATH="python load_cuda.py"
 ENV GPU_ENABLED=true
 
 EXPOSE 50051:50051
