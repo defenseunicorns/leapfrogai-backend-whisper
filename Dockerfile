@@ -1,4 +1,6 @@
-FROM ghcr.io/defenseunicorns/leapfrogai/python:3.11-dev-amd64 as builder
+ARG ARCH=amd64
+
+FROM ghcr.io/defenseunicorns/leapfrogai/python:3.11-dev-${ARCH} as builder
 
 WORKDIR /leapfrogai
 
@@ -11,7 +13,7 @@ RUN /home/nonroot/.local/bin/ct2-transformers-converter --model openai/whisper-b
 # Use ffmpeg image to get compiled binaries
 FROM cgr.dev/chainguard/ffmpeg:latest as ffmpeg
 
-FROM ghcr.io/defenseunicorns/leapfrogai/python:3.11-amd64
+FROM ghcr.io/defenseunicorns/leapfrogai/python:3.11-${ARCH}
 
 WORKDIR /leapfrogai
 
