@@ -118,7 +118,7 @@ tqdm==4.66.1
     #   huggingface-hub
     #   openai-whisper
     #   transformers
-transformers==4.35.2
+transformers==4.36.0
     # via leapfrogai-backend-whisper (pyproject.toml)
 typing-extensions==4.8.0
     # via
