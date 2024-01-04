@@ -2,7 +2,7 @@
 name = "leapfrogai-backend-whisper"
 version = "0.4.0"
 
-description = "whisper backend for LeapfrogAI"
+description = "Whisper backend for LeapfrogAI"
 authors = [{ name = "LeapfrogAI Authors", email = "ai@defenseunicorns.com" }]
 license = { file = "LICENSE" }
 dependencies = [
