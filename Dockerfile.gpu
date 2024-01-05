@@ -19,13 +19,13 @@ COPY --from=ffmpeg /usr/bin/ffmpeg /usr/bin
 COPY --from=ffmpeg /usr/bin/ffprobe /usr/bin
 COPY --from=ffmpeg /usr/lib/lib* /usr/lib
 COPY --from=builder /home/nonroot/.local/lib/python3.11/site-packages /home/nonroot/.local/lib/python3.11/site-packages
+
 COPY --from=builder /leapfrogai/.model/ /leapfrogai/.model/
 
 COPY main.py .
-COPY scripts/load_cuda.py .
 
-ENV LD_LIBRARY_PATH="python load_cuda.py"
 ENV GPU_ENABLED=true
+ENV LD_LIBRARY_PATH=/home/nonroot/.local/lib/python3.11/site-packages/nvidia/cublas/lib:/home/nonroot/.local/lib/python3.11/site-packages/nvidia/cudnn/lib 
 
 EXPOSE 50051:50051
 
