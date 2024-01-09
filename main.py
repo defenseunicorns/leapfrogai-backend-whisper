@@ -29,7 +29,6 @@ def make_transcribe_request(filename, task, language, temperature, prompt):
         output += segment.text
 
     logger.info("Completed " + filename)
-    logger.info(output)
 
     return {"text": output}
 
