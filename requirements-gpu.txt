@@ -1064,9 +1064,9 @@ tqdm==4.66.1 \
     #   huggingface-hub
     #   openai-whisper
     #   transformers
-transformers==4.35.2 \
-    --hash=sha256:2d125e197d77b0cdb6c9201df9fa7e2101493272e448b9fba9341c695bee2f52 \
-    --hash=sha256:9dfa76f8692379544ead84d98f537be01cd1070de75c74efb13abcbc938fbe2f
+transformers==4.36.0 \
+    --hash=sha256:64e120d252db4bdcd355288d19e857dac9d89886f9d0ac20244cb9af3142bb50 \
+    --hash=sha256:e5a9d9424bcbc5008782ddd79ecbc3a50991e168cc730a14c4c89e80c61f419d
     # via leapfrogai-backend-whisper (pyproject.toml)
 triton==2.0.0 \
     --hash=sha256:0117722f8c2b579cd429e0bee80f7731ae05f63fe8e9414acd9a679885fcbf42 \
