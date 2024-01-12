@@ -1,23 +1,31 @@
 [project]
 name = "leapfrogai-backend-whisper"
 version = "0.4.0"
+
 description = "Whisper backend for LeapfrogAI"
+authors = [{ name = "LeapfrogAI Authors", email = "ai@defenseunicorns.com" }]
+license = { file = "LICENSE" }
 dependencies = [
-    "leapfrogai~=0.3.3",
-    "openai-whisper>=20230918",
-    "ffmpeg>=1.4",
-    "ctranslate2",
-    "faster-whisper",
-    "transformers"
+    "leapfrogai == 0.4.0",
+    "openai-whisper == 20230918",
+    "ffmpeg == 1.4",
+    "faster-whisper == 0.10.0",
+    "ctranslate2 == 3.22.0",
+    "transformers == 4.35.2",
 ]
+requires-python = ">=3.11.4, <3.12"
 readme = "README.md"
-requires-python = ">=3.11.4"
 
 [project.optional-dependencies]
-dev = ["pip-tools", "pytest", "black", "isort"]
+dev = [
+    "pip-tools",
+    "pytest",
+    "black",
+    "isort",
+    "nvidia-cublas-cu11",
+    "nvidia-cuda-runtime-cu11",
+]
+gpu = ["nvidia-cublas-cu11", "nvidia-cuda-runtime-cu11"]
 
 [tool.pip-tools]
 generate-hashes = true
-
-[tool.setuptools.packages.find]
-exclude = ["chart"]
