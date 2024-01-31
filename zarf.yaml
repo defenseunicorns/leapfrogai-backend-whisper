@@ -10,7 +10,10 @@ variables:
     description: Optionally turn on GPU inferencing for environments with capable CUDA devices
     default: false
     prompt: true
-    sensitive: false
+  - name: NUMBER_OF_GPUS
+    description: If GPU_ENABLED is true, this must be 1 or more. If GPU_ENABLED is false, this should stay at 0.
+    default: 0
+    prompt: true
 
 constants:
   - name: IMAGE_VERSION
