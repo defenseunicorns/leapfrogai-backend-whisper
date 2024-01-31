@@ -17,15 +17,7 @@ requires-python = ">=3.11.4, <3.12"
 readme = "README.md"
 
 [project.optional-dependencies]
-dev = [
-    "pip-tools",
-    "pytest",
-    "black",
-    "isort",
-    "nvidia-cublas-cu11",
-    "nvidia-cuda-runtime-cu11",
-]
-gpu = ["nvidia-cublas-cu11", "nvidia-cuda-runtime-cu11"]
+dev = ["pip-tools", "pytest", "black", "isort"]
 
 [tool.pip-tools]
 generate-hashes = true

@@ -23,6 +23,8 @@ COPY --from=ffmpeg /usr/lib/lib* /usr/lib
 COPY --from=builder /home/nonroot/.local/lib/python3.11/site-packages /home/nonroot/.local/lib/python3.11/site-packages
 COPY --from=builder /leapfrogai/.model/ /leapfrogai/.model/
 
+ENV LD_LIBRARY_PATH=/home/nonroot/.local/lib/python3.11/site-packages/nvidia/cublas/lib:/home/nonroot/.local/lib/python3.11/site-packages/nvidia/cudnn/lib
+
 COPY main.py .
 
 EXPOSE 50051:50051
