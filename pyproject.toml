@@ -1,10 +1,12 @@
 [project]
 name = "leapfrogai-backend-whisper"
-version = "0.4.0"
+version = "0.5.0"
 
 description = "Whisper backend for LeapfrogAI"
 authors = [{ name = "LeapfrogAI Authors", email = "ai@defenseunicorns.com" }]
 license = { file = "LICENSE" }
+readme = "README.md"
+requires-python = ">=3.11.4, <3.12"
 dependencies = [
     "leapfrogai == 0.4.0",
     "openai-whisper == 20230918",
@@ -13,8 +15,6 @@ dependencies = [
     "ctranslate2 == 3.22.0",
     "transformers == 4.35.2",
 ]
-requires-python = ">=3.11.4, <3.12"
-readme = "README.md"
 
 [project.optional-dependencies]
 dev = ["pip-tools", "pytest", "black", "isort"]
