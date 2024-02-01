@@ -1,4 +1,6 @@
 MODEL_NAME ?= openai/whisper-base
+REGISTRY ?= ghcr.io/defenseunicorns/leapfrogai/whisper
+VERSION ?= $(shell git fetch --tags && git tag -l "*.*.*" | sort -V | tail -n 1 | sed -e 's/^v//')
 
 .PHONY: all
 
@@ -25,3 +27,18 @@ test:
 
 dev:
 	python main.py
+
+docker-publish:
+	docker buildx install && \
+	if docker buildx ls | grep -q 'whisper'; then \
+	echo "Instance whisper already exists."; \
+	else \
+	docker buildx create --use --name whisper; \
+	fi && \
+	docker buildx build --push \
+	--build-arg REGISTRY=${REGISTRY} \
+	--build-arg VERSION=${VERSION} \
+	--platform linux/arm64,linux/amd64 \
+	-t ${REGISTRY}:${VERSION} . && \
+	docker buildx rm whisper
+
