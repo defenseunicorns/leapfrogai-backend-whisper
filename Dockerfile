@@ -34,8 +34,8 @@ COPY --from=builder /leapfrogai/.model/ /leapfrogai/.model/
 
 # set the path to the cuda 11.8 dependencies
 ENV LD_LIBRARY_PATH \
-    /.venv/lib64/python3.11/site-packages/nvidia/cublas/lib: \
-    /.venv/lib64/python3.11/site-packages/nvidia/cudnn/lib
+/leapfrogai/.venv/lib64/python3.11/site-packages/nvidia/cublas/lib:\
+/leapfrogai/.venv/lib64/python3.11/site-packages/nvidia/cudnn/lib
 
 COPY main.py .
 
