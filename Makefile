@@ -36,7 +36,7 @@ docker-run:
 	docker run -d -p 50051:50051 ghcr.io/defenseunicorns/leapfrogai/whisper:${VERSION}-${ARCH}
 
 docker-run-gpu:
-	docker run --gpus device=0 -d -p 50051:50051 ghcr.io/defenseunicorns/leapfrogai/whisper:${VERSION}-${ARCH}
+	docker run --gpus device=0 -e GPU_ENABLED=true -d -p 50051:50051 ghcr.io/defenseunicorns/leapfrogai/whisper:${VERSION}-${ARCH}
 
 docker-push:
 	docker push ghcr.io/defenseunicorns/leapfrogai/whisper:${VERSION}-${ARCH}
