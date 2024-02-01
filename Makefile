@@ -29,10 +29,16 @@ test:
 dev:
 	python main.py
 
-make docker-build:
+docker-build:
 	docker build -t ghcr.io/defenseunicorns/leapfrogai/whisper:${VERSION}-${ARCH} --build-arg ARCH=${ARCH} .
 
-make docker-push:
+docker-run:
+	docker run -d -p 50051:50051 ghcr.io/defenseunicorns/leapfrogai/whisper:${VERSION}-${ARCH}
+
+docker-run-gpu:
+	docker run --gpus all -d -p 50051:50051 ghcr.io/defenseunicorns/leapfrogai/whisper:${VERSION}-${ARCH}
+
+docker-push:
 	docker push ghcr.io/defenseunicorns/leapfrogai/whisper:${VERSION}-${ARCH}
 
 docker-publish:
