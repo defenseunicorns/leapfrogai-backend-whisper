@@ -13,7 +13,7 @@ dependencies = [
     "ffmpeg == 1.4",
     "faster-whisper == 0.10.0",
     "ctranslate2 == 3.24.0",
-    "transformers == 4.35.2",
+    "transformers == 4.37.2",
 ]
 
 [project.optional-dependencies]
