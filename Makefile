@@ -40,17 +40,3 @@ docker-run-gpu:
 
 docker-push:
 	docker push ghcr.io/defenseunicorns/leapfrogai/whisper:${VERSION}-${ARCH}
-
-docker-publish:
-	docker buildx install && \
-	if docker buildx ls | grep -q 'whisper'; then \
-	echo "Instance whisper already exists."; \
-	else \
-	docker buildx create --use --name whisper; \
-	fi && \
-	docker buildx build --push \
-	--build-arg REGISTRY=${REGISTRY} \
-	--build-arg VERSION=${VERSION} \
-	--platform linux/arm64,linux/amd64 \
-	-t ${REGISTRY}:${VERSION} . && \
-	docker buildx rm whisper
