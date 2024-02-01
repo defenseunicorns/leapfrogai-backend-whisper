@@ -1,6 +1,7 @@
 MODEL_NAME ?= openai/whisper-base
 REGISTRY ?= ghcr.io/defenseunicorns/leapfrogai/whisper
 VERSION ?= $(shell git fetch --tags && git tag -l "*.*.*" | sort -V | tail -n 1 | sed -e 's/^v//')
+ARCH ?= $(shell uname -m | sed s/aarch64/arm64/ | sed s/x86_64/amd64/)
 
 .PHONY: all
 
@@ -27,6 +28,12 @@ test:
 
 dev:
 	python main.py
+
+make docker-build:
+	docker build -t ghcr.io/defenseunicorns/leapfrogai/whisper:${VERSION}-${ARCH} --build-arg ARCH=${ARCH} .
+
+make docker-push:
+	docker push ghcr.io/defenseunicorns/leapfrogai/whisper:${VERSION}-${ARCH}
 
 docker-publish:
 	docker buildx install && \
