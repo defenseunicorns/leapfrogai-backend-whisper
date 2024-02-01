@@ -1,10 +1,3 @@
-VERSION := $(shell git describe --abbrev=0 --tags 2> /dev/null )
-ifeq ($(VERSION),)
-  VERSION := latest
-endif
-
-ARCH := $(shell uname -m | sed s/aarch64/arm64/ | sed s/x86_64/amd64/)
-
 MODEL ?= openai/whisper-base
 
 create-venv:
@@ -30,9 +23,3 @@ test:
 
 dev:
 	python main.py
-
-docker-build:
-	docker build -t ghcr.io/defenseunicorns/leapfrogai/whisper:${VERSION}-${ARCH} --build-arg ARCH=${ARCH} .
-
-docker-push:
-	docker push ghcr.io/defenseunicorns/leapfrogai/whisper:${VERSION}-${ARCH}

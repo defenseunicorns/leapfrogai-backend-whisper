@@ -58,8 +58,6 @@ make fetch-model
 python main.py
 ```
 
-
-
 ### Run in Docker
 
 <details>
