@@ -4,8 +4,6 @@ on:
   push:
     tags:
       - "v*.*.*"
-      - dev
-  workflow_dispatch:
 
 env:
   REGISTRY_IMAGE: defenseunicorns/leapfrogai/whisper

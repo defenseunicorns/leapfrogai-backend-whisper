@@ -1,5 +1,7 @@
 MODEL ?= openai/whisper-base
 
+.PHONY: all
+
 create-venv:
 	python -m venv .venv
 
