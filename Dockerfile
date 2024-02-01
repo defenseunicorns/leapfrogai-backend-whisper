@@ -8,11 +8,14 @@ COPY requirements.txt .
 
 RUN pip install -r requirements.txt
 
-RUN /home/nonroot/.local/bin/ct2-transformers-converter --model openai/whisper-base --output_dir .model --copy_files tokenizer.json --quantization float32
+# download and covnert OpenAI's whisper base
+ARG MODEL_NAME=openai/whisper-base
+RUN /home/nonroot/.local/bin/ct2-transformers-converter --model ${MODEL_NAME} --output_dir .model --copy_files tokenizer.json --quantization float32
 
-# Use ffmpeg image to get compiled binaries
+# Use hardened ffmpeg image to get compiled binaries
 FROM cgr.dev/chainguard/ffmpeg:latest as ffmpeg
 
+# hardened and slim python image
 FROM --platform=$BUILDPLATFORM ghcr.io/defenseunicorns/leapfrogai/python:3.11-${ARCH}
 
 WORKDIR /leapfrogai
@@ -23,6 +26,7 @@ COPY --from=ffmpeg /usr/lib/lib* /usr/lib
 COPY --from=builder /home/nonroot/.local/lib/python3.11/site-packages /home/nonroot/.local/lib/python3.11/site-packages
 COPY --from=builder /leapfrogai/.model/ /leapfrogai/.model/
 
+# set the path to the cuda 11.8 dependencies
 ENV LD_LIBRARY_PATH=/home/nonroot/.local/lib/python3.11/site-packages/nvidia/cublas/lib:/home/nonroot/.local/lib/python3.11/site-packages/nvidia/cudnn/lib
 
 COPY main.py .

@@ -2,7 +2,7 @@
 
 ## Description
 
-A LeapfrogAI API-compatible Whisper wrapper for audio transcription generation.
+A LeapfrogAI API-compatible [faster-whisper](https://github.com/SYSTRAN/faster-whisper) wrapper for audio transcription generation across CPU and GPU infrastructures.
 
 ## Usage
 
@@ -23,6 +23,12 @@ The following are additional assumptions for GPU inferencing:
 3. You have properly installed one or more NVIDIA GPUs and GPU drivers
 4. You have properly installed and configured the [cuda-toolkit](https://developer.nvidia.com/cuda-toolkit) and [nvidia-container-toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/index.html)
 </details>
+
+### Model Selection
+
+The default model that comes with this backend in this repository's officially released images is a [CTranslate2](https://github.com/OpenNMT/CTranslate2) converted version of [OpenAI's Whisper Base](https://huggingface.co/openai/whisper-base).
+
+Other Whisper model sizes and variants can be loaded into this backend by modifying the `MODEL_NAME` during image creation or Makefile command execution.
 
 ### Run Locally
 

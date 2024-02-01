@@ -1,4 +1,4 @@
-MODEL ?= openai/whisper-base
+MODEL_NAME ?= openai/whisper-base
 
 .PHONY: all
 
@@ -18,7 +18,7 @@ build-requirements-dev:
 	pip-compile --extra dev -o requirements-dev.txt pyproject.toml
 
 fetch-model:
-	ct2-transformers-converter --model ${MODEL} --output_dir .model --copy_files tokenizer.json --quantization float32
+	ct2-transformers-converter --model ${MODEL_NAME} --output_dir .model --copy_files tokenizer.json --quantization float32
 
 test:
 	pytest **/*.py
