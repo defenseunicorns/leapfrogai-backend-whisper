@@ -1,0 +1,27 @@
+# Documentation and fallbacks for missed things
+* @defenseunicorns/leapfrogai
+*.md @defenseunicorns/leapfrogai 
+
+# Core Code
+/tests/ @defenseunicorns/leapfrogai
+/main.py @defenseunicorns/leapfrogai
+
+# Packaging
+/Dockerfile @defenseunicorns/leapfrogai
+/Dockerfile.gpu @defenseunicorns/leapfrogai
+/zarf-config.yaml @defenseunicorns/leapfrogai
+/zarf.yaml @defenseunicorns/leapfrogai
+
+# Pipeline and Project Files
+/.github/ @defenseunicorns/leapfrogai
+/scripts/ @defenseunicorns/leapfrogai
+/.gitignore @defenseunicorns/leapfrogai
+/Makefile @defenseunicorns/leapfrogai
+/pyproject.toml @defenseunicorns/leapfrogai
+/requirements-dev.txt @defenseunicorns/leapfrogai
+/requirements-gpu.txt @defenseunicorns/leapfrogai
+/requirements.txt @defenseunicorns/leapfrogai
+
+# Additional privileged files
+/CODEOWNERS @jeff-mccoy @austenbryan @gerred
+/LICENSE @jeff-mccoy @austenbryan @gerred
