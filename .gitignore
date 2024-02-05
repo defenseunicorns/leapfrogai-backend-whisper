@@ -1,6 +1,8 @@
 # Zarf packages
 zarf*.tar.zst
 zarf-sbom/
+temp/
+tmp
 
 # Models Directory
 .models/*
@@ -34,6 +36,7 @@ share/python-wheels/
 *.egg
 MANIFEST
 .python-version
+config.yaml
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
