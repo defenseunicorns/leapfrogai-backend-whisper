@@ -86,6 +86,6 @@ Where `<IMAGE_TAG>` is the released packages found [here](https://github.com/org
 
 ```bash
 docker build -t ghcr.io/defenseunicorns/leapfrogai/whisper:<IMAGE_TAG> .
-# add the "--gpus all" flag for CUDA inferencing
+# add the "--gpus all" and "-e GPU_ENABLED=true" flags for GPU inferencing
 docker run -p 50051:50051 -d --name whisper ghcr.io/defenseunicorns/leapfrogai/whisper:<IMAGE_TAG>
 ```
