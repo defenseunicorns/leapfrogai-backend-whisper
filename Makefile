@@ -1,5 +1,10 @@
 MODEL_NAME ?= openai/whisper-base
-VERSION ?= $(shell git fetch --tags && git tag -l "*.*.*" | sort -V | tail -n 1 | sed -e 's/^v//')
+
+VERSION ?= $(shell git describe --abbrev=0 --tags | sed -e 's/^v//')
+ifeq ($(VERSION),)
+  VERSION := latest
+endif
+
 ARCH ?= $(shell uname -m | sed s/aarch64/arm64/ | sed s/x86_64/amd64/)
 
 .PHONY: all
