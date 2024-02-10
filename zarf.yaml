@@ -5,13 +5,6 @@ metadata:
   description: >
     whisper model
 
-variables:
-  - name: GPU_ENABLED
-    description: Optionally turn on GPU inferencing for environments with capable CUDA devices
-    default: false
-    prompt: true
-    sensitive: false
-
 constants:
   - name: IMAGE_VERSION
     value: "###ZARF_PKG_TMPL_IMAGE_VERSION###"
@@ -23,4 +16,4 @@ components:
     required: true
     import:
       name: model
-      url: oci://ghcr.io/defenseunicorns/packages/leapfrogai/leapfrogai-model:0.4.0-skeleton
+      url: oci://ghcr.io/defenseunicorns/packages/leapfrogai/leapfrogai-model:0.4.2
