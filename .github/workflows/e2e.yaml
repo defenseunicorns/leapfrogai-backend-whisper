@@ -29,3 +29,23 @@ jobs:
           run: |
             uds deploy oci://ghcr.io/defenseunicorns/packages/uds/bundles/k3d-core-istio-dev:0.13.1 -l=trace --confirm
 
+        #TODO @JPERRY: Consider deploying this as part of a bundle
+        - name: Install lfai-api 
+          run: |
+            uds zarf package deploy oci://ghcr.io/defenseunicorns/packages/leapfrogai-api:v0.5.1 --confirm
+
+        # TODO @JPERRY: This is going to need to build the image in the future.
+        #     : That is going to be annoying...
+        - name: Build Whisper Zarf Package
+          run: |
+            uds zarf package create . --set=IMAGE_VERSION=0.5.0-amd64 --confirm
+
+        # TODO @JPERRY:  Consider deploying this as part of a bundle
+        - name: Install Whisper Backend
+          run: |
+            uds zarf package deploy zarf-package-whisper-amd64-*.tar.zst --confirm
+
+        - name: Test curl command
+          run: |
+            response=$(curl -L leapfrogai-api.uds.dev/models)
+            echo $response
