@@ -19,6 +19,7 @@ jobs:
         - name: Install Python Deps
           run: make requirements-dev
 
+        # TODO @JPERRY: Consider using the uds-common composite action
         - name: Install UDS-CLI
           run: |
             wget https://github.com/defenseunicorns/uds-cli/releases/download/v0.9.2/uds-cli_v0.9.2_Linux_amd64
@@ -38,16 +39,13 @@ jobs:
           run: |
             uds zarf package deploy oci://ghcr.io/defenseunicorns/packages/leapfrogai-api:v0.5.1 --confirm
 
-        # TODO @JPERRY: This is going to need to build the image in the future.
-        #     : That is going to be annoying...
-        - name: Build Whisper Zarf Package
+        # Since Zarf is slow when using local images, we are pushing the whisper image to a local registry
+        - name: Build & Deploy Whisper
           run: |
-            uds zarf package create . --set=IMAGE_VERSION=0.5.0-amd64 --confirm
-
-        # TODO @JPERRY:  Consider deploying this as part of a bundle
-        - name: Install Whisper Backend
-          run: |
-            uds zarf package deploy zarf-package-whisper-amd64-*.tar.zst --confirm
+            docker run -d -p 5000:5000 --restart=always --name registry registry:2
+            docker build -t localhost:5000/defenseunicorns/leapfrogai/whisper:e2e-amd64 .
+            docker push localhost:5000/defenseunicorns/leapfrogai/whisper:e2e-amd64 
+            uds zarf dev deploy --registry-override=ghcr.io=localhost:5000 --create-set=IMAGE_VERSION=e2e-amd64 --no-yolo
 
         - name: Run Tests
           run: |
