@@ -3,7 +3,7 @@ on: [pull_request]
 
 jobs:
   e2e:
-    runs-on: ai-ubuntu-big-boy-4-core
+    runs-on: ai-ubuntu-big-boy-8-core
 
     steps:
         - name: Checkout Repo
@@ -14,12 +14,9 @@ jobs:
           with:
             python-version-file: 'pyproject.toml'
 
-        # TODO @JPERRY: This is installing a lot more than we need...
-        #               We only need a minor subset of these deps for running the tests
         - name: Install Python Deps
           run: make requirements-dev
 
-        # TODO @JPERRY: Consider using the uds-common composite action
         - name: Install UDS-CLI
           run: |
             wget https://github.com/defenseunicorns/uds-cli/releases/download/v0.9.2/uds-cli_v0.9.2_Linux_amd64
@@ -32,9 +29,8 @@ jobs:
           
         - name: Create UDS Cluster
           run: |
-            uds deploy oci://ghcr.io/defenseunicorns/packages/uds/bundles/k3d-core-istio-dev:0.13.1 -l=trace --confirm
+            uds deploy oci://ghcr.io/defenseunicorns/packages/uds/bundles/k3d-core-istio-dev:0.13.1 --confirm
 
-        #TODO @JPERRY: Consider deploying this as part of a bundle
         - name: Install lfai-api 
           run: |
             uds zarf package deploy oci://ghcr.io/defenseunicorns/packages/leapfrogai-api:v0.5.1 --confirm
