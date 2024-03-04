@@ -20,19 +20,21 @@ def test_completions():
 
 
 def test_chat_completions():
+    messages = [
+        {"role": "system", "content": "You are a helpful assistant."},
+        {"role": "user", "content": "This should result in a failure"},
+    ]
+
     with pytest.raises(InternalServerError) as excinfo:
-        client.completions.create(
-            model="whisper",
-            prompt="This should result in a failure",
-        )
+        client.chat.completions.create(model="whisper", messages=messages)
     assert str(excinfo.value) == "Internal Server Error"
 
 
 def test_embeddings():
     with pytest.raises(InternalServerError) as excinfo:
-        client.completions.create(
+        client.embeddings.create(
             model="whisper",
-            prompt="This should result in a failure",
+            input="This should result in a failure",
         )
     assert str(excinfo.value) == "Internal Server Error"
 
