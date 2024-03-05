@@ -31,7 +31,7 @@ uds zarf package deploy oci://ghcr.io/defenseunicorns/packages/leapfrogai-api:v0
 # Install the Whisper Backend
 # NOTE: Be sure to use the latest released version at the time you're reading this!
 # NOTE: If you are testing changes you have made locally, you will need to rebuild the Whisper Docker image and Zarf Package.
-uds zarf package deploy oci://ghcr.io/defenseunicorns/packages/whisper:0.5.0 --confirm
+uds zarf package deploy oci://ghcr.io/defenseunicorns/packages/leapfrogai/whisper:0.5.0 --confirm
 
 
 # Install the python dependencies
