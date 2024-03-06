@@ -2,6 +2,7 @@ name: e2e
 on:
   pull_request:
     paths-ignore:
+      - ".github/**"
       - "**.md"
       - "CODEOWNERS"
       - ".gitignore"
