@@ -32,7 +32,7 @@ jobs:
 
       - name: Build images
         run: |
-          make docker-release VERSION=${{ steps.get_version.outputs.version-without-v }}
+          docker buildx build --platform linux/amd64,linux/arm64 -t ghcr.io/defenseunicorns/leapfrogai/rag:${{ steps.get_version.outputs.version-without-v }} --push .
 
       - name: Install Zarf
         uses: defenseunicorns/setup-zarf@f95763914e20e493bb5d45d63e30e17138f981d6 # v1.0.0
@@ -41,4 +41,4 @@ jobs:
         run: zarf package create . --set=PACKAGE_VERSION=${{ steps.get_version.outputs.version-without-v }} --set=IMAGE_VERSION=${{ steps.get_version.outputs.version-without-v }} --confirm
 
       - name: Publish Zarf Package
-        run: zarf package publish zarf-package-*.zst oci://ghcr.io/defenseunicorns/packages
+        run: zarf package publish zarf-package-*.zst oci://ghcr.io/defenseunicorns/packages/leapfrogai

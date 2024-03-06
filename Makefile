@@ -34,13 +34,19 @@ dev:
 	python main.py
 
 docker-build:
-	docker build -t ghcr.io/defenseunicorns/leapfrogai/whisper:${VERSION}-${ARCH} --build-arg ARCH=${ARCH} .
-
-docker-push:
-	docker push ghcr.io/defenseunicorns/leapfrogai/whisper:${VERSION}-${ARCH}
+	docker build -t ghcr.io/defenseunicorns/leapfrogai/whisper:${VERSION} --build-arg ARCH=${ARCH} .
 
 docker-run:
-	docker run -d -p 50051:50051 ghcr.io/defenseunicorns/leapfrogai/whisper:${VERSION}-${ARCH}
+	docker run -d -p 50051:50051 ghcr.io/defenseunicorns/leapfrogai/whisper:${VERSION}
 
 docker-run-gpu:
-	docker run --gpus device=0 -e GPU_ENABLED=true -d -p 50051:50051 ghcr.io/defenseunicorns/leapfrogai/whisper:${VERSION}-${ARCH}
+	docker run --gpus device=0 -e GPU_ENABLED=true -d -p 50051:50051 ghcr.io/defenseunicorns/leapfrogai/whisper:${VERSION}
+
+zarf-create:
+	zarf package create . --confirm --set=PACKAGE_VERSION=${VERSION} --set=IMAGE_VERSION=${VERSION}
+
+zarf-create-local-registry:
+	zarf package create . --confirm --registry-override ghcr.io=localhost:5000 --set IMG=defenseunicorns/leapfrogai/rag:${VERSION}
+
+zarf-deploy:
+	zarf package deploy --confirm zarf-package-*.tar.zst
