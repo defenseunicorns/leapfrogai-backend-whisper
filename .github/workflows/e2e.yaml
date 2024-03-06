@@ -13,7 +13,7 @@ concurrency:
 
 jobs:
   e2e:
-    runs-on: ai-ubuntu-big-boy-8-core
+    runs-on: ubuntu-latest 
 
     steps:
         - name: Checkout Repo
@@ -55,4 +55,4 @@ jobs:
 
         - name: Run Tests
           run: |
-            python -m pytest . -v
+            python -m pytest ./tests/e2e -v
