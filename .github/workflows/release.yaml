@@ -10,6 +10,9 @@ on:
 jobs:
   publish:
     runs-on: ai-ubuntu-big-boy-4-core
+    strategy:
+      matrix:
+        architecture: [linux/amd64, linux/arm64]
     steps:
       - name: Checkout Repo
         uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
@@ -32,7 +35,7 @@ jobs:
 
       - name: Build images
         run: |
-          docker buildx build --platform linux/amd64,linux/arm64 -t ghcr.io/defenseunicorns/leapfrogai/rag:${{ steps.get_version.outputs.version-without-v }} --push .
+          docker buildx build --platform ${{ matrix.architecture }} -t ghcr.io/defenseunicorns/leapfrogai/rag:${{ steps.get_version.outputs.version-without-v }} --push .
 
       - name: Install Zarf
         uses: defenseunicorns/setup-zarf@f95763914e20e493bb5d45d63e30e17138f981d6 # v1.0.0
