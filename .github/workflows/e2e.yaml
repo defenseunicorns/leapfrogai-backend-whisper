@@ -11,6 +11,10 @@ on:
       - "!docs/**"
       - "!Makefile"
 
+concurrency:
+  group: e2e-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   e2e:
     runs-on: ai-ubuntu-big-boy-8-core
@@ -55,4 +59,4 @@ jobs:
 
         - name: Run Tests
           run: |
-            python -m pytest . -v
+            python -m pytest ./tests/e2e -v

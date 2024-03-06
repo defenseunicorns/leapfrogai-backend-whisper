@@ -15,7 +15,6 @@ def test_completions():
             model="whisper",
             prompt="This should result in a failure",
         )
-    print(excinfo.type)
     assert str(excinfo.value) == "Internal Server Error"
 
 
