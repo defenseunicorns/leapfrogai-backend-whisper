@@ -3,5 +3,5 @@ package:
     set:
       name: whisper
       image_repository: "ghcr.io/defenseunicorns/leapfrogai/whisper"
-      image_version: 0.5.0
+      image_version: 0.5.1
     max_package_size: "1000000000"
