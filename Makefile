@@ -49,4 +49,4 @@ zarf-create-local-registry:
 	zarf package create . --confirm --registry-override ghcr.io=localhost:5000 --set IMG=defenseunicorns/leapfrogai/whisper:${VERSION}
 
 zarf-deploy:
-	zarf package deploy --confirm zarf-package-*.tar.zst
+	zarf package deploy --confirm zarf-package-whisper-${ARCH}-${VERSION}.tar.zst
