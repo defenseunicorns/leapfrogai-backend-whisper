@@ -1,13 +1,15 @@
 name: e2e
 on:
   pull_request:
-    paths-ignore:
-      - ".github/**"
-      - "**.md"
-      - "CODEOWNERS"
-      - ".gitignore"
-      - "docs/**"
-      - "Makefile"
+    paths:
+      - "*"
+      - "!.github/**"
+      - ".github/workflows/e2e.yml"
+      - "!**.md"
+      - "!CODEOWNERS"
+      - "!.gitignore"
+      - "!docs/**"
+      - "!Makefile"
 
 jobs:
   e2e:
