@@ -34,7 +34,7 @@ dev:
 	python main.py
 
 docker-build:
-	docker build -t ghcr.io/defenseunicorns/leapfrogai/whisper:${VERSION} --build-arg ARCH=${ARCH} .
+	docker build -t ghcr.io/defenseunicorns/leapfrogai/whisper:${VERSION} --platform ${ARCH} .
 
 docker-run:
 	docker run -d -p 50051:50051 ghcr.io/defenseunicorns/leapfrogai/whisper:${VERSION}
