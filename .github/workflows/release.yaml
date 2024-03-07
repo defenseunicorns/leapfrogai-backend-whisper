@@ -9,9 +9,6 @@ on:
 jobs:
   publish:
     runs-on: ai-ubuntu-big-boy-4-core
-    strategy:
-      matrix:
-        architecture: [amd64, arm64]
     steps:
       - name: Checkout Repo
         uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
@@ -35,13 +32,19 @@ jobs:
 
       - name: Build images
         run: |
-          docker buildx build --platform ${{ matrix.architecture }} -t ghcr.io/defenseunicorns/leapfrogai/whisper:${{ steps.get_version.outputs.version-without-v }} --push .
+          docker buildx build --platform amd64,arm64 -t ghcr.io/defenseunicorns/leapfrogai/whisper:${{ steps.get_version.outputs.version-without-v }} --push .
+
+      
 
       - name: Install Zarf
         uses: defenseunicorns/setup-zarf@f95763914e20e493bb5d45d63e30e17138f981d6 # v1.0.0
 
       - name: Build Zarf Package
-        run: zarf package create . --set=PACKAGE_VERSION=${{ steps.get_version.outputs.version-without-v }} --set=IMAGE_VERSION=${{ steps.get_version.outputs.version-without-v }} --architecture ${{ matrix.architecture }} --confirm
+        run: |
+          zarf package create . --set=PACKAGE_VERSION=${{ steps.get_version.outputs.version-without-v }} --set=IMAGE_VERSION=${{ steps.get_version.outputs.version-without-v }} --architecture amd64 --confirm
+          zarf package create . --set=PACKAGE_VERSION=${{ steps.get_version.outputs.version-without-v }} --set=IMAGE_VERSION=${{ steps.get_version.outputs.version-without-v }} --architecture arm64 --confirm
 
       - name: Publish Zarf Package
-        run: zarf package publish zarf-package-whisper-${{ matrix.architecture }}-${{ steps.get_version.outputs.version-without-v }}.tar.zst oci://ghcr.io/defenseunicorns/packages/leapfrogai
+        run: |
+          zarf package publish zarf-package-whisper-amd64-${{ steps.get_version.outputs.version-without-v }}.tar.zst oci://ghcr.io/defenseunicorns/packages/leapfrogai
+          zarf package publish zarf-package-whisper-arm64-${{ steps.get_version.outputs.version-without-v }}.tar.zst oci://ghcr.io/defenseunicorns/packages/leapfrogai
