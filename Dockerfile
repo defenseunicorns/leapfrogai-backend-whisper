@@ -1,6 +1,4 @@
-ARG ARCH=amd64
-
-FROM --platform=$BUILDPLATFORM ghcr.io/defenseunicorns/leapfrogai/python:3.11-dev-${ARCH} as builder
+FROM --platform=$BUILDPLATFORM ghcr.io/defenseunicorns/leapfrogai/python:3.11-dev as builder
 
 WORKDIR /leapfrogai
 
@@ -19,7 +17,7 @@ RUN ct2-transformers-converter --model ${MODEL_NAME} --output_dir .model --copy_
 FROM cgr.dev/chainguard/ffmpeg:latest as ffmpeg
 
 # hardened and slim python image
-FROM --platform=$BUILDPLATFORM ghcr.io/defenseunicorns/leapfrogai/python:3.11-${ARCH}
+FROM --platform=$BUILDPLATFORM ghcr.io/defenseunicorns/leapfrogai/python:3.11
 
 ENV PATH="/leapfrogai/.venv/bin:$PATH"
 
