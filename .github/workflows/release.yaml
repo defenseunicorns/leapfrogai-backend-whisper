@@ -44,4 +44,4 @@ jobs:
         run: zarf package create . --set=PACKAGE_VERSION=${{ steps.get_version.outputs.version-without-v }} --set=IMAGE_VERSION=${{ steps.get_version.outputs.version-without-v }} --architecture ${{ matrix.platform }} --confirm
 
       - name: Publish Zarf Package
-        run: zarf package publish zarf-package-whisper-${{ matrix.platform }}-${{ steps.get_version.outputs.version-without-v }}.zst oci://ghcr.io/defenseunicorns/packages/leapfrogai
+        run: zarf package publish zarf-package-whisper-${{ matrix.platform }}-${{ steps.get_version.outputs.version-without-v }}.tar.zst oci://ghcr.io/defenseunicorns/packages/leapfrogai
