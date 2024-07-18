@@ -1,5 +1,7 @@
 # LeapfrogAI Whisper Backend
 
+> ***⚠️This repo is archived in favor of the LeapfrogAI monorepo: https://github.com/defenseunicorns/leapfrogai⚠️***
+
 ## Description
 
 A LeapfrogAI API-compatible [faster-whisper](https://github.com/SYSTRAN/faster-whisper) wrapper for audio transcription generation across CPU and GPU infrastructures.
